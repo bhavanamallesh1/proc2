@@ -1,0 +1,221 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+#include<time.h>
+int n_players,_1st=0,_2nd=0,_3rd=0,_4th=0,position=0,seat=0,f,d1,d2;
+char n;
+int Rolling();
+int Dice();
+int main()
+
+{ printf(&quot;\t\t\t\t\tWelcome to Snakes and Ladders Game\n\n&quot;);
+printf(&quot;|100 99 98 97 96 95 94 93 92 91 | any player starts from zeroth
+position\n&quot;);
+printf(&quot;|81 82 83 84 85 86 87 88 89 90 | Snake 98 to 79 ladder 80 to 99\n&quot;);
+printf(&quot;|80 79 78 77 76 75 74 73 72 71 | Snake 62 to 19 ladder 72 to 91\n&quot;);
+printf(&quot;|61 62 63 64 65 66 67 68 69 70 | Snake 67 to 51 ladder 34 to 54\n&quot;);
+printf(&quot;|60 59 58 57 56 55 54 53 52 51 | Snake 12 to 2 ladder 3 to 16\n&quot;);
+printf(&quot;|41 42 43 44 45 46 47 48 49 50 | Snake 14 to 11 ladder 5 to 30\n&quot;);
+printf(&quot;|40 39 38 37 36 35 34 33 32 31 | Snake 17 to 4 ladder 15 to 25\n&quot;);
+printf(&quot;|21 22 23 24 25 26 27 28 29 30 | Snake 31 to 19 ladder 18 to 20\n&quot;);
+printf(&quot;|20 19 18 17 16 15 14 13 12 11 | Snake 35 to 22 ladder 21 to 32\n&quot;);
+printf(&quot;|1 2 3 4 5 6 7 8 9 10 | The player who reach 100 first will be winner\n&quot;);
+
+printf(&quot;\t\t\t\tPress Enter to roll the dice\n&quot;);
+printf(&quot;Maximum player should not exceed 4\t\t\tEnter the The number of players you want:&quot;);
+scanf(&quot;%d&quot;,&amp;n_players);
+//Selection of players
+while (&quot;game&quot;)
+
+{
+f=(seat%n_players)+1;
+printf(&quot;Player %d turn\n&quot;,f);
+
+Rolling();
+Dice();
+if (f==1)
+position=_1st;
+if (f==2)
+position=_2nd;
+if (f==3)
+position=_3rd;
+if (f==4)
+position=_4th;
+if (position+d1 &gt; 100)
+printf(&quot;The Value exceeds 100 so the player will not move\n&quot;);
+else if (position+d1 &lt;= 100)
+{
+position=position+d1; //increment of player position
+//for Ladders
+if( position == 3)
+{
+printf(&quot;Hurray! Up the ladder!\n&quot;);
+position=position+13;
+}
+if( position == 5)
+{
+printf(&quot;Hurray! Up the ladder!\n&quot;);
+position=position+25;
+}
+if( position == 15)
+{
+printf(&quot;Hurray! Up the ladder!\n&quot;);
+position=position+10;
+}
+if( position == 18)
+{
+printf(&quot;Hurray! Up the ladder!\n&quot;);
+position=position+2;
+}
+if( position == 21)
+{
+printf(&quot;Hurray! Up the ladder!\n&quot;);
+position=position+11;
+}
+if( position == 34)
+{
+printf(&quot;Hurray! Up the ladder!\n&quot;);
+position=position+20;
+}
+if( position == 72)
+{
+printf(&quot;Hurray! Up the ladder!\n&quot;);
+position=position+19;
+}
+if( position == 80)
+{
+printf(&quot;Hurray! Up the ladder!\n&quot;);
+position=position+19;
+}
+// for snakes
+if( position == 12)
+{
+printf(&quot;Ouch! Bitten by a snake!\n&quot;);
+position=position-10;
+}
+if( position == 17)
+{
+printf(&quot;Ouch! Bitten by a snake!\n&quot;);
+position=position-13;
+}
+if( position == 14)
+{
+printf(&quot;Ouch! Bitten by a snake!\n&quot;);
+position=position-3;
+}
+if( position == 31)
+{
+printf(&quot;Ouch! Bitten by a snake!\n&quot;);
+position=position-12;
+}
+if( position == 35)
+{
+printf(&quot;Ouch! Bitten by a snake!\n&quot;);
+position=position-13;
+}
+if( position == 67)
+{
+printf(&quot;Ouch! Bitten by a snake!\n&quot;);
+position=position-16;
+}
+if( position == 62)
+{
+printf(&quot;Ouch! Bitten by a snake!\n&quot;);
+position=position-43;
+}
+if( position == 98)
+{
+printf(&quot;Ouch! Bitten by a snake!\n&quot;);
+position=position-19;
+}
+//position of players
+}
+if (f==1)
+{
+_1st=position;
+printf(&quot;Player 1 landed on %d\n&quot;,_1st);
+}
+if (f==2)
+{
+_2nd=position;
+printf(&quot;Player 2 landed on %d\n&quot;,_2nd);
+}
+if (f==3)
+{
+_3rd=position;
+printf(&quot;Player 3 landed on %d\n&quot;,_3rd);
+}
+if (f==4)
+{
+_4th=position;
+printf(&quot;Player 4 landed on %d\n&quot;,_4th);
+}
+// Win the player who reach 100 first
+if (_1st==100)
+{
+printf(&quot;Player 1 wins the game\n&quot;);
+break;
+}
+if (_2nd==100)
+{
+printf(&quot;Player 2 wins the game\n&quot;);
+break;
+}
+if (_3rd==100)
+{
+printf(&quot;Player 3 wins the game\n&quot;);
+break;
+}
+if (_4th==100)
+{
+printf(&quot;Player 4 wins the game\n&quot;);
+break;
+}
+seat++;
+}
+
+printf(&quot;Game Over... Congrulations\n&quot;);
+
+return 0;
+}
+// custom function for rolling the dice
+int Rolling()
+{
+scanf(&quot;%c&quot;,&amp;n);
+if (n==10)
+{
+srand(time(0)); // srand()gives the random function a new seed, a starting point (usually random numbers are
+
+//calculated by taking the previous number (or the seed) and then do many operations on that number to generate the
+//next).
+d1=(rand()%6)+1;//time(0) gives the time in seconds since the Unix epoch, which is a pretty good
+//&quot;unpredictable&quot; seed (you&#39;re guaranteed your seed will be the same only once, unless you start your program multiple
+//times within the same second).
+} // srand(time( NULL ) ); The NULL means that the value (the time in seconds) is n&#39;t stored
+anywhere.
+printf(&quot;The dice turned to be : %d\n&quot;,d1);//The srand() function sets the starting point for producing a series of
+pseudo-random integers. If srand() is not called, the rand() seed is set as if srand(1) were called at program start. Any
+other value for seed sets the generator to a different starting point.
+}
+
+// custom function for 6 on dice
+int Dice()
+{
+
+while(&quot;game&quot;)
+{
+if (d1!=6 &amp;&amp; d2!=6)
+break;
+while(1)
+{
+scanf(&quot;%c&quot;,&amp;n);
+if (n==10)
+{
+d2=(rand()%6)+1;
+break;
+}
+}
+printf(&quot;The dice tuned to be:%d\n&quot;,d2);
+d1=d1+d2;
+}
+}
